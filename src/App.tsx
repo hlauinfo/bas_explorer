@@ -366,7 +366,7 @@ function App(props: any) {
           <QueryParamProvider ReactRouterRoute={Route}>
             <CssBaseline />
             <Switch>
-              <Route path={"/"} component={Dashboard} exact={true} />
+              <Route path={"/dashboard"} component={Dashboard} exact={true} />
               <Route
                 path={"/stats/miners"}
                 component={MinerStatsPage}
