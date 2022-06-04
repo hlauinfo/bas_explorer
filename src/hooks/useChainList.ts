@@ -8,19 +8,19 @@ import React from "react";
 export default function() {
   const [chains, setChains] = React.useState<Chain[]>([
     {
-      name: "Ethereum Classic",
-      network: "mainnet",
+      name: "Ankr-BSC Application Sidechain",
+      network: "testnet",
       rpc: ["https://www.ethercluster.com/etc"],
     },
     {
-      name: "Matic",
-      network: "mainnet",
-      rpc: ["https://rpc-mainnet.matic.network"],
+      name: "GAL-BSC Application Sidechain",
+      network: "testnet",
+      rpc: ["https://bas-galaxy-testnet.nodereal.io/"],
     },
     {
-      name: "Matic - Mumbai",
+      name: "CUBE-BSC Application Sidechain",
       network: "testnet",
-      rpc: ["https://rpc-mumbai.matic.today"],
+      rpc: ["https://bas-cube-testnet.nodereal.io/"],
     },
   ]);
 
