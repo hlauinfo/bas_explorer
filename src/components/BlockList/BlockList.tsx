@@ -15,7 +15,7 @@ function BlockList({ blocks }: any) {
     return null;
   }
   const sortedBlocks = blocks.sort((a: { number: number }, b: { number: number }) => {
-    return b.number - a.number;
+    return a === null || b === null ? 0 : b.number - a.number;
   });
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>

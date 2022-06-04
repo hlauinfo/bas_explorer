@@ -22,6 +22,11 @@ export default function() {
       network: "testnet",
       rpc: ["https://bas-cube-testnet.nodereal.io/"],
     },
+    {
+      name: "NodeReal-BSC Application Sidechain",
+      network: "testnet",
+      rpc: ["https://bas-aries-public.nodereal.io/"],
+    },
   ]);
 
   // uncomment once we add 'chain list provider' concept. This list blows.
