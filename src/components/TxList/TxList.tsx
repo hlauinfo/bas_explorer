@@ -56,6 +56,8 @@ export interface ITxListProps {
 }
 
 function TxList(props: ITxListProps) {
+  if (props.transactions.length === 0) { return null; }
+
   return (
     <Table>
       <TableHead>
