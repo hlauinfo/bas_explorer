@@ -120,7 +120,7 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>{t("Extra Data")}</TableCell>
-            <TableCell>{hexToString(extraData)}</TableCell>
+            <TableCell>{extraData}</TableCell>
           </TableRow>
 
           <TableRow>
