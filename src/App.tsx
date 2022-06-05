@@ -60,7 +60,7 @@ const history = createPreserveQueryHistory(createBrowserHistory, [
   "rpcUrl",
 ])();
 
-const client = new GraphQLClient({
+const defaultClient = new GraphQLClient({
   url: 'https://explorer.dev-01.bas.ankr.com/graphiql'
 })
 
@@ -71,6 +71,7 @@ function App(props: any) {
   const theme = darkMode.value ? darkTheme : lightTheme;
 
   const [selectedChain, setSelectedChain] = useState<Chain>();
+  const [selectedClient, setSelectedClient] = useState<GraphQLClient>();
   const [chains, setChains] = useChainListStore<[Chain[], Dispatch<Chain[]>]>();
   const [ethRPC, setEthRPCChain] = useEthRPCStore();
 
@@ -152,6 +153,17 @@ function App(props: any) {
       setEthRPCChain(selectedChain);
     }
   }, [selectedChain, setEthRPCChain]);
+
+  useEffect(() => {
+    if (selectedChain !== undefined) {
+      console.log(selectedChain?.graphUrl)
+      const client = new GraphQLClient({
+        url: selectedChain?.graphUrl
+      })
+
+      setSelectedClient(client);
+    }
+  }, [selectedChain, setSelectedClient]);
 
   React.useEffect(() => {
     if (ethRPC) {
@@ -368,7 +380,7 @@ function App(props: any) {
           onSubmit={submitAddChainDialog}
         />
         <div style={{ margin: "0px 25px 0px 25px" }}>
-          <ClientContext.Provider value={client}>
+          <ClientContext.Provider value={selectedClient || defaultClient}>
             <QueryParamProvider ReactRouterRoute={Route}>
               <CssBaseline />
               <Switch>

@@ -11,21 +11,25 @@ export default function() {
       name: "Ankr-BSC Application Sidechain",
       network: "testnet",
       rpc: ["https://www.ethercluster.com/etc"],
-    },
-    {
-      name: "GAL-BSC Application Sidechain",
-      network: "testnet",
-      rpc: ["https://bas-galaxy-testnet.nodereal.io/"],
+      graphUrl: "https://explorer.dev-01.bas.ankr.com/graphiql",
     },
     {
       name: "CUBE-BSC Application Sidechain",
       network: "testnet",
       rpc: ["https://bas-cube-testnet.nodereal.io/"],
+      graphUrl: "https://bas-cube-testnet-explorer.nodereal.io/graphiql",
+    },
+    {
+      name: "GAL-BSC Application Sidechain",
+      network: "testnet",
+      rpc: ["https://bas-galaxy-testnet.nodereal.io/"],
+      graphUrl: "https://bas-galaxy-testnet-explorer.nodereal.io/graphiql",
     },
     {
       name: "NodeReal-BSC Application Sidechain",
       network: "testnet",
       rpc: ["https://bas-aries-public.nodereal.io/"],
+      graphUrl: "https://bas-aries-testnet-explorer.nodereal.io/graphiql",
     },
   ]);
 

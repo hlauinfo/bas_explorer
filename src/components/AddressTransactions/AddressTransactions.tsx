@@ -21,14 +21,6 @@ const AddressTransactions: React.FC<IProps> = (props) => {
   const { t } = useTranslation();
   return (
     <div style={props.style}>
-      <Grid container justify="flex-end">
-        <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
-          <ArrowBackIos />
-        </IconButton>
-        <IconButton onClick={props.onNext} disabled={props.disableNext}>
-          <ArrowForwardIos />
-        </IconButton>
-      </Grid>
       <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
     </div>
   );
