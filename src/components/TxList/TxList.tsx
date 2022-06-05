@@ -24,11 +24,11 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
       <TableCell>
         <Link
           component={({ className, children }: { children: any, className: string }) => (
-            <RouterLink className={className} to={`/address/${tx.fromAddressHash}`} >
+            <RouterLink className={className} to={`/address/${tx.from || tx.fromAddressHash}`} >
               {children}
             </RouterLink>
           )}>
-          {tx.fromAddressHash}
+          {tx.from || tx.fromAddressHash}
         </Link>
       </TableCell>
 
@@ -36,16 +36,18 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
         {tx.toAddressHash !== null ?
           <Link
             component={({ className, children }: { children: any, className: string }) => (
-              <RouterLink className={className} to={`/address/${tx.toAddressHash}`} >
+              <RouterLink className={className} to={`/address/${tx.to || tx.toAddressHash}`} >
                 {children}
               </RouterLink>
             )}>
-            {tx.toAddressHash}
+            {tx.to || tx.toAddressHash}
           </Link>
           : null}
       </TableCell>
 
-      <TableCell>{hexToNumber(tx.index)}</TableCell>
+      <TableCell>{hexToNumber(tx.transactionIndex) || tx.index}</TableCell>
+      <TableCell>{hexToNumber(tx.value)}</TableCell>
+      <TableCell>{tx.status}</TableCell>
     </TableRow>
   );
 }
@@ -67,6 +69,8 @@ function TxList(props: ITxListProps) {
           <TableCell>From</TableCell>
           <TableCell>To</TableCell>
           <TableCell>Index</TableCell>
+          <TableCell>Value</TableCell>
+          <TableCell>Status</TableCell>
         </TableRow>
       </TableHead>
 

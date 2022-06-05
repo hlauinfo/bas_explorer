@@ -46,7 +46,8 @@ const Address: React.FC<IProps> = ({ match, history }) => {
             hash,
             fromAddressHash,
             toAddressHash,
-            index
+            value,
+            status
           }
         }
       }
