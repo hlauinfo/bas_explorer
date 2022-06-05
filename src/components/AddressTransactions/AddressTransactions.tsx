@@ -6,6 +6,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
 
 export interface IProps {
+  setTransactions: (transactions: Transaction[]) => void;
   transactions: Transaction[];
   from: number;
   to: number;
@@ -32,11 +33,6 @@ const AddressTransactions: React.FC<IProps> = (props) => {
         <Typography>Showing block range: {props.to} - {props.from}</Typography>
       </Grid>
       <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
-      {(!props.transactions || props.transactions.length === 0) &&
-        <Grid container style={{ padding: "15px" }}>
-          <Typography>{t("No Transactions for this block range.")}</Typography>
-        </Grid>
-      }
     </div>
   );
 };

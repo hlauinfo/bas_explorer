@@ -53,11 +53,16 @@ import useChainListStore from "./stores/useChainListStore";
 import useEthRPCStore from "./stores/useEthRPCStore";
 import AddChain from "./components/AddChain/AddChain";
 import { NetworkWifi } from "@material-ui/icons";
+import { GraphQLClient, ClientContext } from 'graphql-hooks'
 
 const history = createPreserveQueryHistory(createBrowserHistory, [
   "network",
   "rpcUrl",
 ])();
+
+const client = new GraphQLClient({
+  url: 'https://explorer.dev-01.bas.ankr.com/graphiql'
+})
 
 function App(props: any) {
   const { t } = useTranslation();
@@ -363,28 +368,30 @@ function App(props: any) {
           onSubmit={submitAddChainDialog}
         />
         <div style={{ margin: "0px 25px 0px 25px" }}>
-          <QueryParamProvider ReactRouterRoute={Route}>
-            <CssBaseline />
-            <Switch>
-              <Route path={"/dashboard"} component={Dashboard} exact={true} />
-              <Route
-                path={"/stats/miners"}
-                component={MinerStatsPage}
-                exact={true}
-              />
-              <Route path={"/stats/miners/:block"} component={MinerStatsPage} />
-              <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
-              <Route path={"/block/:hash"} component={Block} />
-              <Route path={"/blocks/:number"} component={NodeView} />
-              <Route
-                path={"/tx/:hash/raw"}
-                component={TransactionRawContainer}
-              />
-              <Route path={"/tx/:hash"} component={Transaction} />
-              <Route path={"/address/:address/:block"} component={Address} />
-              <Route path={"/address/:address"} component={Address} />
-            </Switch>
-          </QueryParamProvider>
+          <ClientContext.Provider value={client}>
+            <QueryParamProvider ReactRouterRoute={Route}>
+              <CssBaseline />
+              <Switch>
+                <Route path={"/dashboard"} component={Dashboard} exact={true} />
+                <Route
+                  path={"/stats/miners"}
+                  component={MinerStatsPage}
+                  exact={true}
+                />
+                <Route path={"/stats/miners/:block"} component={MinerStatsPage} />
+                <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
+                <Route path={"/block/:hash"} component={Block} />
+                <Route path={"/blocks/:number"} component={NodeView} />
+                <Route
+                  path={"/tx/:hash/raw"}
+                  component={TransactionRawContainer}
+                />
+                <Route path={"/tx/:hash"} component={Transaction} />
+                <Route path={"/address/:address/:block"} component={Address} />
+                <Route path={"/address/:address"} component={Address} />
+              </Switch>
+            </QueryParamProvider>
+          </ClientContext.Provider>
         </div>
       </ThemeProvider>
     </Router>

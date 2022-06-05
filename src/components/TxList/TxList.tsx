@@ -24,28 +24,28 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
       <TableCell>
         <Link
           component={({ className, children }: { children: any, className: string }) => (
-            <RouterLink className={className} to={`/address/${tx.from}`} >
+            <RouterLink className={className} to={`/address/${tx.fromAddressHash}`} >
               {children}
             </RouterLink>
           )}>
-          {tx.from}
+          {tx.fromAddressHash}
         </Link>
       </TableCell>
 
       <TableCell>
-        {tx.to !== null ?
+        {tx.toAddressHash !== null ?
           <Link
             component={({ className, children }: { children: any, className: string }) => (
-              <RouterLink className={className} to={`/address/${tx.to}`} >
+              <RouterLink className={className} to={`/address/${tx.toAddressHash}`} >
                 {children}
               </RouterLink>
             )}>
-            {tx.to}
+            {tx.toAddressHash}
           </Link>
           : null}
       </TableCell>
 
-      <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
+      <TableCell>{hexToNumber(tx.index)}</TableCell>
     </TableRow>
   );
 }

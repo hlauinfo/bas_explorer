@@ -8,6 +8,7 @@ import { hexToNumber } from "@etclabscore/eserialize";
 import AddressTransactions from "../components/AddressTransactions";
 import { History } from "history";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
+import { useQuery } from 'graphql-hooks'
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -33,6 +34,31 @@ const Address: React.FC<IProps> = ({ match, history }) => {
 
   const from = Math.max(blockNum ? blockNum : 0 - 99, 0);
   const to = blockNum;
+
+  const TRANSACTION_QUERY = `
+  {
+    address(hash: "${address}")
+    {
+      transactions(count: 20, last: 20) {
+        edges {
+          node {
+            blockNumber,
+            hash,
+            fromAddressHash,
+            toAddressHash,
+            index
+          }
+        }
+      }
+    }
+  }
+  `
+
+  const { loading, error, data } = useQuery(TRANSACTION_QUERY, {
+    variables: {
+      addressHash: address,
+   }
+  })
 
   React.useEffect(() => {
     if (isNaN(blockNum) || isNaN(blockNumber)) {
@@ -70,22 +96,10 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   }, [blockNumber, address, erpc]);
 
   React.useEffect(() => {
-    if (!erpc) { return; }
-    getBlocks(from, to, erpc).then((blcks) => {
-      const txes = _.flatMap(blcks, "transactions");
-      const filteredTxes = _.filter(txes, (tx: any) => {
-        if (!tx) {
-          return false;
-        }
-        return tx.to === address || tx.from === address;
-      });
-      const sortedTxes = _.sortBy(filteredTxes, (tx: any) => {
-        return hexToNumber(tx.blockNumber);
-      }).reverse();
-      setTransactions(sortedTxes);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [from, to]);
+    if (!loading && !error && data) {
+      setTransactions(data?.address?.transactions?.edges?.map((e: any) => e.node) || [])
+    }
+  }, [loading, error, data]);
 
   if (transactionCount === undefined || balance === undefined || code === undefined) {
     return <CircularProgress />;
@@ -99,6 +113,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
         code={code}
       />
       <AddressTransactions
+        setTransactions={setTransactions}
         from={from}
         to={to}
         transactions={transactions}
