@@ -52,7 +52,7 @@ import { IChain as Chain } from "./models/chain";
 import useChainListStore from "./stores/useChainListStore";
 import useEthRPCStore from "./stores/useEthRPCStore";
 import AddChain from "./components/AddChain/AddChain";
-import { NetworkWifi } from "@material-ui/icons";
+import { Explore, NetworkWifi } from "@material-ui/icons";
 import { GraphQLClient, ClientContext } from 'graphql-hooks'
 
 const history = createPreserveQueryHistory(createBrowserHistory, [
@@ -333,6 +333,25 @@ function App(props: any) {
                     {!query.rpcUrl && <CircularProgress />}
                   </>
                 )}
+                <Link
+                  component={({
+                    className,
+                    children,
+                  }: {
+                    children: any;
+                    className: string;
+                  }) => (
+                    <RouterLink className={className} to={"/dashboard"}>
+                      {children}
+                    </RouterLink>
+                  )}
+                >
+                  <Tooltip title="Dashboard">
+                    <IconButton >
+                      <Explore />
+                    </IconButton>
+                  </Tooltip>
+                </Link>
                 <Tooltip title={t("Toggle Dark Mode") as string}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
