@@ -1,4 +1,4 @@
-BAS Explorer
+BNB Chain Application Sidechain (BAS) Explorer
 
 ## A simple blockchain explorer built for BAS Testnets.
 
