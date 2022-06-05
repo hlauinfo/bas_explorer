@@ -21,6 +21,7 @@ import React, {
 import { Link as RouterLink, Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
 import "./App.css";
+import Roadmap from "./components/Roadmap";
 import Address from "./containers/Address";
 import Block from "./containers/Block";
 import Dashboard from "./containers/Dashboard";
@@ -371,6 +372,7 @@ function App(props: any) {
             <QueryParamProvider ReactRouterRoute={Route}>
               <CssBaseline />
               <Switch>
+                <Route path={"/"} component={Roadmap} exact={true} />
                 <Route path={"/dashboard"} component={Dashboard} exact={true} />
                 <Route
                   path={"/stats/miners"}
