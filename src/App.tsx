@@ -46,7 +46,7 @@ import {
 import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
 import BlockRawContainer from "./containers/BlockRawContainer";
 import TransactionRawContainer from "./containers/TransactionRawContainer";
-import expeditionLogo from "./expedition.png";
+import basLogo from "./bastrace.png";
 import MinerStatsPage from "./containers/MinerStatsPage";
 import { IChain as Chain } from "./models/chain";
 import useChainListStore from "./stores/useChainListStore";
@@ -280,16 +280,11 @@ function App(props: any) {
                   <Grid container>
                     <Grid>
                       <img
-                        alt="expedition-logo"
+                        alt="bastrace-logo"
                         height="30"
                         style={{ marginRight: "10px" }}
-                        src={expeditionLogo}
+                        src={basLogo}
                       />
-                    </Grid>
-                    <Grid>
-                      <Typography color="textSecondary" variant="h6">
-                        {t("Expedition")}
-                      </Typography>
                     </Grid>
                   </Grid>
                 </Link>
@@ -338,33 +333,6 @@ function App(props: any) {
                     {!query.rpcUrl && <CircularProgress />}
                   </>
                 )}
-                <Tooltip title={t("Add custom chain") as string}>
-                  <IconButton onClick={openAddChainModal}>
-                    <PlaylistAddIcon />
-                  </IconButton>
-                </Tooltip>
-                <LanguageMenu />
-                <Tooltip title={t("JSON-RPC API Documentation") as string}>
-                  <IconButton
-                    onClick={
-                      () =>
-                        window.open(
-                          "https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json"
-                        ) //tslint:disable-line
-                    }
-                  >
-                    <NotesIcon />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title={t("Expedition Github") as string}>
-                  <IconButton
-                    onClick={() =>
-                      window.open("https://github.com/xops/expedition")
-                    }
-                  >
-                    <CodeIcon />
-                  </IconButton>
-                </Tooltip>
                 <Tooltip title={t("Toggle Dark Mode") as string}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}

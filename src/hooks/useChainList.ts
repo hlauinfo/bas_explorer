@@ -8,25 +8,25 @@ import React from "react";
 export default function() {
   const [chains, setChains] = React.useState<Chain[]>([
     {
-      name: "Ankr-BSC Application Sidechain",
+      name: "Ankr BAS",
       network: "testnet",
       rpc: ["https://www.ethercluster.com/etc"],
       graphUrl: "https://explorer.dev-01.bas.ankr.com/graphiql",
     },
     {
-      name: "CUBE-BSC Application Sidechain",
+      name: "CUBE BAS",
       network: "testnet",
       rpc: ["https://bas-cube-testnet.nodereal.io/"],
       graphUrl: "https://bas-cube-testnet-explorer.nodereal.io/graphiql",
     },
     {
-      name: "GAL-BSC Application Sidechain",
+      name: "Project Galaxy BAS",
       network: "testnet",
       rpc: ["https://bas-galaxy-testnet.nodereal.io/"],
       graphUrl: "https://bas-galaxy-testnet-explorer.nodereal.io/graphiql",
     },
     {
-      name: "NodeReal-BSC Application Sidechain",
+      name: "Aries BAS",
       network: "testnet",
       rpc: ["https://bas-aries-public.nodereal.io/"],
       graphUrl: "https://bas-aries-testnet-explorer.nodereal.io/graphiql",
