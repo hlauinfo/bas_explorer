@@ -29,9 +29,6 @@ const AddressTransactions: React.FC<IProps> = (props) => {
           <ArrowForwardIos />
         </IconButton>
       </Grid>
-      <Grid container justify="flex-end">
-        <Typography>Showing block range: {props.to} - {props.from}</Typography>
-      </Grid>
       <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
     </div>
   );
