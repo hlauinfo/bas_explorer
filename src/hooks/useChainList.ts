@@ -10,7 +10,7 @@ export default function() {
     {
       name: "Ankr BAS",
       network: "testnet",
-      rpc: ["https://www.ethercluster.com/etc"],
+      rpc: ["https://rpc.dev-01.bas.ankr.com/"],
       graphUrl: "https://explorer.dev-01.bas.ankr.com/graphiql",
     },
     {
