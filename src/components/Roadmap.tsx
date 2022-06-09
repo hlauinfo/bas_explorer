@@ -36,7 +36,8 @@ class Roadmap extends React.Component {
                   <h3>Project Info</h3>
                 </div>
                 <ul>
-                  <li><a href="https://github.com/hlauinfo/bas_explorer">GitHub</a></li>
+                  <li>BAS Trace is the first multi-chain explorer built for BNB Chain Application Sidechains (BAS).</li>
+                  <li>Improved performance and better UIs are coming. If you would like to support this project, please reach out to hello at bastrace.com</li>
                 </ul>
               </div>
             </div>
